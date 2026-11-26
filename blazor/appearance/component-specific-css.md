@@ -1,15 +1,15 @@
 ---
 layout: post
-title: Component-Specific CSS Architecture in Blazor Themes | Syncfusion®
-description: Learn how to load only the styles required for the components used in your Blazor application using the component-specific CSS package architecture.
+title: Component-Specific CSS in Blazor Themes | Syncfusion®
+description: Learn how to load only the styles required for the components used in your Blazor application using component-specific CSS packages.
 platform: Blazor
 component: Appearance
 documentation: ug
 ---
 
-# Component-Specific CSS Architecture in Blazor Themes
+# Component-Specific CSS in Blazor Themes
 
-The Syncfusion&reg; Blazor Themes are published as a **component-specific CSS package architecture**. Every supported theme is split into a shared **Base** package and a set of individual **component** packages, so applications can load only the styles required by the components they use.
+The Syncfusion&reg; Blazor Themes support **component-specific CSS references**. Every supported theme is split into a shared **Base** package and a set of individual **component** packages, so applications can load only the styles required by the components they use.
 
 Instead of referencing a single, all-in-one theme stylesheet, you reference the **Base** stylesheet followed by one stylesheet per component that is rendered in the application. The Base stylesheet must always be loaded first because it provides the common styles, variables, typography, animations, utility classes, and shared component dependencies that every Syncfusion&reg; Blazor component relies on.
 
@@ -21,11 +21,11 @@ Each theme is distributed as a set of stylesheets organized into three logical g
 * **Component packages** – One `.min.css` file per Syncfusion&reg; Blazor component that contains the styles specific to that component. Applications reference only the component stylesheets that match the components they render.
 * **Lite variants** – Optional optimized builds that use a `-lite` suffix in the stylesheet filename (for example, `base-lite.min.css` and `diagram-lite.min.css`) that omit the bigger size mode styles and provide a reduced CSS footprint while preserving visual consistency.
 
-The standard reference for a single component looks like the following example for the [Blazor Diagram](https://www.syncfusion.com/blazor-components/blazor-diagram) component using the Fluent 2 Dark theme:
+The standard reference for a single component looks like the following example for the [Blazor Diagram](https://www.syncfusion.com/blazor-components/blazor-diagram) component using the Fluent 2 theme:
 
 ```html
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/diagram/diagram.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/base/base.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/diagram/diagram.min.css" />
 ```
 
 The **first** stylesheet (`base.min.css`) is required. The remaining stylesheets are added **only for the components that are actually used** in the application.
@@ -50,8 +50,8 @@ Applications reference the **Base** stylesheet once and then add a `<link>` tag 
 For an application that renders only the [Blazor Diagram](https://www.syncfusion.com/blazor-components/blazor-diagram) component, reference the Base stylesheet and the Diagram component stylesheet:
 
 ```html
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/diagram/diagram.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/base/base.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/diagram/diagram.min.css" />
 ```
 
 ### Grid component
@@ -59,8 +59,8 @@ For an application that renders only the [Blazor Diagram](https://www.syncfusion
 For an application that renders only the [Blazor DataGrid](https://www.syncfusion.com/blazor-components/blazor-datagrid) component, reference the Base stylesheet and the DataGrid component stylesheet:
 
 ```html
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grid/grid.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/base/base.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/grid/grid.min.css" />
 ```
 
 ### Multiple components
@@ -68,10 +68,10 @@ For an application that renders only the [Blazor DataGrid](https://www.syncfusio
 For an application that uses the [Blazor Button](https://www.syncfusion.com/blazor-components/blazor-button), [Blazor DataGrid](https://www.syncfusion.com/blazor-components/blazor-datagrid), and [Blazor Diagram](https://www.syncfusion.com/blazor-components/blazor-diagram) components together, add a stylesheet for each component after the Base stylesheet:
 
 ```html
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/button/button.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grid/grid.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/diagram/diagram.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/base/base.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/button/button.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/grid/grid.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/diagram/diagram.min.css" />
 ```
 
 The order of the component stylesheets after `base.min.css` does not matter. The Base stylesheet must always appear first.
@@ -83,15 +83,15 @@ The component-specific CSS references are available for both **standard** and **
 ### Standard theme example
 
 ```html
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/diagram/diagram.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/base/base.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/diagram/diagram.min.css" />
 ```
 
 ### Lite theme example
 
 ```html
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base-lite.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/diagram/diagram-lite.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/base/base-lite.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/diagram/diagram-lite.min.css" />
 ```
 
 The lite theme variant provides a smaller CSS footprint because it excludes the bigger size mode styles. Use the lite variant when the application does not use the bigger size mode (the `.e-bigger` class). Refer to the [lite theme documentation](https://blazor.syncfusion.com/documentation/appearance/themes#lite-theme-files) for details on when to choose the lite variant.
@@ -102,7 +102,7 @@ N> Lite themes preserve the appearance and functionality of Syncfusion&reg; Blaz
 
 For each theme, the stylesheets are published as individual component folders under the theme name inside the `Syncfusion.Blazor.Themes` static web assets. Each component folder contains a `.min.css` stylesheet for the standard variant and a `-lite.min.css` stylesheet for the lite variant.
 
-The following table lists the component-specific CSS packages and their paths. Replace `<THEME-NAME>` with the theme name you are using (for example, `fluent2-dark`, `fluent2`, `material3`, `bootstrap5.3`, `tailwind3`, or `highcontrast`). For lite variants, replace `.min.css` with `-lite.min.css` (for example, `base-lite.min.css` or `grid-lite.min.css`).
+The following table lists the component-specific CSS packages and their paths. Replace `<THEME-NAME>` with the theme name you are using (for example, `fluent2`, `fluent2-dark`, `material3`, `bootstrap5.3`, `tailwind3`, or `highcontrast`). For lite variants, replace `.min.css` with `-lite.min.css` (for example, `base-lite.min.css` or `grid-lite.min.css`).
 
 <table>
   <thead>
@@ -558,7 +558,7 @@ Add the Base and component-specific `<link>` tags to the host page of your appli
 * For a **Blazor Web App** using **Server**, **WebAssembly**, or **Auto** interactive render modes, add the references in the `<head>` section of **`~/Components/App.razor`**.
 * For a **Blazor WebAssembly standalone app**, add the references in the `<head>` section of **`~/wwwroot/index.html`**.
 
-The following example shows a Blazor Web App that renders the [Blazor Diagram](https://www.syncfusion.com/blazor-components/blazor-diagram), [Blazor DataGrid](https://www.syncfusion.com/blazor-components/blazor-datagrid), and [Blazor Button](https://www.syncfusion.com/blazor-components/blazor-button) components using the Fluent 2 Dark theme:
+The following example shows a Blazor Web App that renders the [Blazor Diagram](https://www.syncfusion.com/blazor-components/blazor-diagram), [Blazor DataGrid](https://www.syncfusion.com/blazor-components/blazor-datagrid), and [Blazor Button](https://www.syncfusion.com/blazor-components/blazor-button) components using the Fluent 2 theme:
 
 ```html
 <!DOCTYPE html>
@@ -569,10 +569,10 @@ The following example shows a Blazor Web App that renders the [Blazor Diagram](h
     <base href="/" />
 
     <!-- Syncfusion Blazor Themes: Base (mandatory) + components used by this app -->
-    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base.min.css" />
-    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/button/button.min.css" />
-    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grid/grid.min.css" />
-    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/diagram/diagram.min.css" />
+    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/base/base.min.css" />
+    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/button/button.min.css" />
+    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/grid/grid.min.css" />
+    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/diagram/diagram.min.css" />
 </head>
 <body>
     ...
@@ -583,10 +583,10 @@ The following example shows a Blazor Web App that renders the [Blazor Diagram](h
 To use the lite variants instead, reference the `-lite.min.css` files:
 
 ```html
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base-lite.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/button/button-lite.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grid/grid-lite.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/diagram/diagram-lite.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/base/base-lite.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/button/button-lite.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/grid/grid-lite.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2/diagram/diagram-lite.min.css" />
 ```
 
 To ensure the host can serve the static web assets, verify that [UseStaticFiles](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles) is called in `~/Program.cs`. For a **Blazor Web App**, this is required in the server project. A standalone **Blazor WebAssembly** app does not require any server-side middleware configuration.
@@ -596,15 +596,15 @@ To ensure the host can serve the static web assets, verify that [UseStaticFiles]
 The component-specific CSS packages are also available on the Syncfusion&reg; CDN under the theme folder. Replace the static web asset path with the CDN URL, keeping the same `base/<component>/<file>` layout:
 
 ```html
-<link rel="stylesheet" href="https://cdn.syncfusion.com/blazor/{{ site.blazorversion }}/styles/fluent2-dark/base/base.min.css" />
-<link rel="stylesheet" href="https://cdn.syncfusion.com/blazor/{{ site.blazorversion }}/styles/fluent2-dark/diagram/diagram.min.css" />
+<link rel="stylesheet" href="https://cdn.syncfusion.com/blazor/{{ site.blazorversion }}/styles/fluent2/base/base.min.css" />
+<link rel="stylesheet" href="https://cdn.syncfusion.com/blazor/{{ site.blazorversion }}/styles/fluent2/diagram/diagram.min.css" />
 ```
 
 For lite variants, reference the `-lite.min.css` files under the theme folder:
 
 ```html
-<link rel="stylesheet" href="https://cdn.syncfusion.com/blazor/{{ site.blazorversion }}/styles/fluent2-dark/base/base-lite.min.css" />
-<link rel="stylesheet" href="https://cdn.syncfusion.com/blazor/{{ site.blazorversion }}/styles/fluent2-dark/diagram/diagram-lite.min.css" />
+<link rel="stylesheet" href="https://cdn.syncfusion.com/blazor/{{ site.blazorversion }}/styles/fluent2/base/base-lite.min.css" />
+<link rel="stylesheet" href="https://cdn.syncfusion.com/blazor/{{ site.blazorversion }}/styles/fluent2/diagram/diagram-lite.min.css" />
 ```
 
 N> Ensure that the version in the CDN URL matches the version of the [Syncfusion.Blazor.Themes](https://www.nuget.org/packages/Syncfusion.Blazor.Themes/) NuGet package referenced by your application.
