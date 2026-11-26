@@ -41,56 +41,6 @@ Referencing only the required component styles offers the following advantages:
 
 N> The component-specific CSS references can be used with all reference methods supported by Syncfusion&reg; Blazor: static web assets, the Syncfusion&reg; CDN, the [Custom Resource Generator (CRG)](https://blazor.syncfusion.com/documentation/common/custom-resource-generator), and [Theme Studio](https://blazor.syncfusion.com/documentation/appearance/theme-studio).
 
-## Theme folder structure
-
-For each theme, the stylesheets are published under the theme name inside the `Syncfusion.Blazor.Themes` static web assets. The folder layout follows the pattern shown below (illustrated using `fluent2-dark` as an example):
-
-```
-_content/
-└── Syncfusion.Blazor.Themes/
-    └── fluent2-dark/
-        ├── base/
-        │   └── base.min.css                  ← Mandatory shared styles
-        ├── buttons/
-        │   └── buttons.min.css
-        ├── calendars/
-        │   └── calendars.min.css
-        ├── data-grid/
-        │   └── data-grid.min.css
-        ├── diagram/
-        │   └── diagram.min.css
-        ├── dropdowns/
-        │   └── dropdowns.min.css
-        ├── grids/
-        │   └── grids.min.css
-        ├── inputs/
-        │   └── inputs.min.css
-        ├── layouts/
-        │   └── layouts.min.css
-        ├── navigations/
-        │   └── navigations.min.css
-        ├── notification/
-        │   └── notification.min.css
-        ├── popups/
-        │   └── popups.min.css
-        └── ... (one folder per component group)
-```
-
-Lite variants use a `-lite` suffix on the theme folder name, while the internal structure remains the same:
-
-```
-_content/
-└── Syncfusion.Blazor.Themes/
-    └── fluent2-dark-lite/
-        ├── base/
-        │   └── base.min.css
-        ├── diagram/
-        │   └── diagram.min.css
-        └── ...
-```
-
-N> The theme folder name uses the standard stylesheet name without the `.css` extension (for example, `fluent2-dark` for `fluent2-dark.css`, `fluent2-dark-lite` for `fluent2-dark-lite.css`).
-
 ## Component-specific CSS references
 
 Applications reference the **Base** stylesheet once and then add a `<link>` tag only for each component that is rendered. The following examples show the most common scenarios.
@@ -106,11 +56,11 @@ For an application that renders only the [Blazor Diagram](https://www.syncfusion
 
 ### Grid component
 
-For an application that renders only the [Blazor DataGrid](https://www.syncfusion.com/blazor-components/blazor-datagrid) component, reference the Base stylesheet and the Grids component stylesheet:
+For an application that renders only the [Blazor DataGrid](https://www.syncfusion.com/blazor-components/blazor-datagrid) component, reference the Base stylesheet and the DataGrid component stylesheet:
 
 ```html
 <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grids/grids.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grid/grid.min.css" />
 ```
 
 ### Multiple components
@@ -119,8 +69,8 @@ For an application that uses the [Blazor Button](https://www.syncfusion.com/blaz
 
 ```html
 <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/buttons/buttons.min.css" />
-<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grids/grids.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/button/button.min.css" />
+<link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grid/grid.min.css" />
 <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/diagram/diagram.min.css" />
 ```
 
@@ -150,7 +100,11 @@ N> Lite themes preserve the appearance and functionality of Syncfusion&reg; Blaz
 
 ## Component-to-CSS reference
 
-The following table lists every Syncfusion&reg; Blazor component that has a component-specific CSS package, along with its stylesheet path relative to the theme folder. Replace `<THEME-NAME>` with the theme folder you are using (for example, `fluent2-dark`, `material3`, `bootstrap5.3`, `tailwind3`, or `highcontrast`), and append `-lite` for the lite variant (for example, `fluent2-dark-lite`).
+For each theme, the stylesheets are published as individual folders under the theme name inside the `Syncfusion.Blazor.Themes` static web assets. Each component folder contains a single `.min.css` file whose name matches the folder name (for example, `grid/grid.min.css`). The image below shows the full set of component folders shipped with a theme package:
+
+![Component-specific CSS folders in the theme package](./images/component-specific-css-packages.png)
+
+The following table maps every Syncfusion&reg; Blazor component that has a component-specific CSS package to its stylesheet path. Replace `<THEME-NAME>` with the theme folder you are using (for example, `fluent2-dark`, `material3`, `bootstrap5.3`, `tailwind3`, or `highcontrast`), and append `-lite` for the lite variant (for example, `fluent2-dark-lite`).
 
 <table>
   <thead>
@@ -165,92 +119,76 @@ The following table lists every Syncfusion&reg; Blazor component that has a comp
       <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/base/base.min.css</code></td>
     </tr>
     <tr>
-      <td>Accordion</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/accordion.min.css</code></td>
-    </tr>
-    <tr>
-      <td>AppBar</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/appbar.min.css</code></td>
-    </tr>
-    <tr>
-      <td>AutoComplete</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/dropdowns/autocomplete.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Avatar</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/layouts/avatar.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Badge</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/layouts/badge.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Breadcrumb</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/breadcrumb.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Button</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/buttons/buttons.min.css</code></td>
+      <td>Button, CheckBox, Chips, RadioButton, Toggle Switch Button</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/button/button.min.css</code></td>
     </tr>
     <tr>
       <td>ButtonGroup</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/buttons/button-group.min.css</code></td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/button-group/button-group.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Floating Action Button</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/floating-action-button/floating-action-button.min.css</code></td>
+    </tr>
+    <tr>
+      <td>ProgressButton</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/progress-button/progress-button.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Speed Dial</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/speed-dial/speed-dial.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Split Button</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/split-button/split-button.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Stepper</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/stepper/stepper.min.css</code></td>
     </tr>
     <tr>
       <td>Calendar</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/calendars/calendar.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Card</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/layouts/card.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Carousel</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/carousel.min.css</code></td>
-    </tr>
-    <tr>
-      <td>CheckBox</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/buttons/check-box.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Chips</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/buttons/chips.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Color Picker</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inputs/color-picker.min.css</code></td>
-    </tr>
-    <tr>
-      <td>ComboBox</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/dropdowns/combo-box.min.css</code></td>
-    </tr>
-    <tr>
-      <td>ContextMenu</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/context-menu.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Dashboard Layout</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/layouts/dashboard-layout.min.css</code></td>
-    </tr>
-    <tr>
-      <td>DataGrid (Grid)</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/grids/grids.min.css</code></td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/calendar/calendar.min.css</code></td>
     </tr>
     <tr>
       <td>DatePicker</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/calendars/datepicker.min.css</code></td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/datepicker/datepicker.min.css</code></td>
     </tr>
     <tr>
       <td>DateRangePicker</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/calendars/daterangepicker.min.css</code></td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/daterangepicker/daterangepicker.min.css</code></td>
     </tr>
     <tr>
       <td>DateTimePicker</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/calendars/datetimepicker.min.css</code></td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/datetimepicker/datetimepicker.min.css</code></td>
     </tr>
     <tr>
-      <td>Dialog (and Predefined Dialogs)</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/popups/dialog.min.css</code></td>
+      <td>TimePicker</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/timepicker/timepicker.min.css</code></td>
+    </tr>
+    <tr>
+      <td>OTP Input</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/otp-input/otp-input.min.css</code></td>
+    </tr>
+    <tr>
+      <td>DataGrid</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/grid/grid.min.css</code></td>
+    </tr>
+    <tr>
+      <td>TreeGrid</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/treegrid/treegrid.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Pivot Table</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/pivotview/pivotview.min.css</code></td>
+    </tr>
+    <tr>
+      <td>AutoComplete, ComboBox, DropDownList, MultiSelect, MultiColumn ComboBox</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/combobox/combobox.min.css</code></td>
+    </tr>
+    <tr>
+      <td>ListBox</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/list-box/list-box.min.css</code></td>
     </tr>
     <tr>
       <td>Diagram</td>
@@ -261,165 +199,133 @@ The following table lists every Syncfusion&reg; Blazor component that has a comp
       <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/document-editor/document-editor.min.css</code></td>
     </tr>
     <tr>
-      <td>DropDownList</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/dropdowns/drop-down-list.min.css</code></td>
-    </tr>
-    <tr>
-      <td>FileManager</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/file-manager/file-manager.min.css</code></td>
-    </tr>
-    <tr>
-      <td>File Upload (Uploader)</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inputs/uploader.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Floating Action Button</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/buttons/floating-action-button.min.css</code></td>
-    </tr>
-    <tr>
-      <td>ImageEditor</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/image-editor/image-editor.min.css</code></td>
-    </tr>
-    <tr>
-      <td>In-place Editor</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inplace-editor/inplace-editor.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Input (Input Mask)</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inputs/input.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Kanban</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/kanban/kanban.min.css</code></td>
-    </tr>
-    <tr>
-      <td>ListBox</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/dropdowns/list-box.min.css</code></td>
-    </tr>
-    <tr>
-      <td>ListView</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/lists/list-view.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Menu Bar</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/menu.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Mention</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inputs/mention.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Message</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/notification/message.min.css</code></td>
-    </tr>
-    <tr>
-      <td>MultiSelect Dropdown</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/dropdowns/multi-select.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Numeric TextBox</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inputs/numerictextbox.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Pager</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/pager.min.css</code></td>
-    </tr>
-    <tr>
       <td>PDF Viewer</td>
       <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/pdfviewer/pdfviewer.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Pivot Table</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/pivotview/pivotview.min.css</code></td>
-    </tr>
-    <tr>
-      <td>ProgressButton</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/buttons/progress-button.min.css</code></td>
-    </tr>
-    <tr>
-      <td>QueryBuilder</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/querybuilder/query-builder.min.css</code></td>
-    </tr>
-    <tr>
-      <td>RadioButton</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/buttons/radio-button.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Range Slider (Slider)</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inputs/slider.min.css</code></td>
     </tr>
     <tr>
       <td>RichTextEditor</td>
       <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/rich-text-editor/rich-text-editor.min.css</code></td>
     </tr>
     <tr>
+      <td>Spreadsheet</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/spreadsheet/spreadsheet.min.css</code></td>
+    </tr>
+    <tr>
+      <td>EmojiPicker</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/emoji-picker/emoji-picker.min.css</code></td>
+    </tr>
+    <tr>
+      <td>FileManager</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/file-manager/file-manager.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Form Renderer</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/form-renderer/form-renderer.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Gantt</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/gantt/gantt.min.css</code></td>
+    </tr>
+    <tr>
+      <td>ImageEditor</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/image-editor/image-editor.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Inline AI Assist</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inline-ai-assist/inline-ai-assist.min.css</code></td>
+    </tr>
+    <tr>
+      <td>In-place Editor</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inplace-editor/inplace-editor.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Kanban</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/kanban/kanban.min.css</code></td>
+    </tr>
+    <tr>
+      <td>ListView</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/list-view/list-view.min.css</code></td>
+    </tr>
+    <tr>
+      <td>MaskedTextBox</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/maskedtextbox/maskedtextbox.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Mention</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/mention/mention.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Color Picker, Input (Input Mask), Numeric TextBox, Range Slider, TextBox, Uploader (File Upload), Signature</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/input/input.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Accordion, AppBar, Breadcrumb, Carousel, ContextMenu, Pager, Sidebar, Tabs, Toolbar, TreeView</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/navigations.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Avatar, Badge, Card, Dashboard Layout, Splitter</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/layouts/layouts.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Message, Skeleton, Spinner</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/notification/notification.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Dialog (and Predefined Dialogs), Popup, Toast, Tooltip</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/popups/popups.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Rating</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/rating/rating.min.css</code></td>
+    </tr>
+    <tr>
       <td>Scheduler</td>
       <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/schedule/schedule.min.css</code></td>
     </tr>
     <tr>
-      <td>Sidebar</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/sidebar.min.css</code></td>
+      <td>Ribbon</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/ribbon/ribbon.min.css</code></td>
     </tr>
     <tr>
-      <td>Signature</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inputs/signature.min.css</code></td>
+      <td>QueryBuilder</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/query-builder/query-builder.min.css</code></td>
     </tr>
     <tr>
-      <td>Skeleton</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/notification/skeleton.min.css</code></td>
+      <td>Smart TextArea</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/smart-textarea/smart-textarea.min.css</code></td>
     </tr>
     <tr>
-      <td>Speed Dial</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/buttons/speed-dial.min.css</code></td>
+      <td>Speech To Text</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/speech-to-text/speech-to-text.min.css</code></td>
     </tr>
     <tr>
-      <td>Spinner</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/popups/spinner.min.css</code></td>
+      <td>Switch</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/switch/switch.min.css</code></td>
     </tr>
     <tr>
-      <td>Tabs</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/tab.min.css</code></td>
+      <td>TextArea</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/textarea/textarea.min.css</code></td>
     </tr>
     <tr>
-      <td>TextBox</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/inputs/textbox.min.css</code></td>
-    </tr>
-    <tr>
-      <td>TimePicker</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/calendars/timepicker.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Toast</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/popups/toast.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Toggle Switch Button</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/buttons/buttons.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Toolbar</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/toolbar.min.css</code></td>
-    </tr>
-    <tr>
-      <td>Tooltip</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/popups/tooltip.min.css</code></td>
-    </tr>
-    <tr>
-      <td>TreeGrid</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/treegrid/treegrid.min.css</code></td>
+      <td>Timeline</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/timeline/timeline.min.css</code></td>
     </tr>
     <tr>
       <td>TreeMap</td>
       <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/treemap/treemap.min.css</code></td>
     </tr>
     <tr>
-      <td>TreeView</td>
-      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/navigations/treeview.min.css</code></td>
+      <td>Slider (Range Slider)</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/slider/slider.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Primitives (shared building blocks)</td>
+      <td><code>_content/Syncfusion.Blazor.Themes/&lt;THEME-NAME&gt;/primitives/primitives.min.css</code></td>
     </tr>
   </tbody>
 </table>
 
-N> Some Syncfusion&reg; Blazor components share styles with another component. For example, the [Toggle Switch Button](https://www.syncfusion.com/blazor-components/blazor-toggle-switch-button) component uses the same `buttons.min.css` stylesheet as the [Button](https://www.syncfusion.com/blazor-components/blazor-button) component. Refer to the stylesheet shared by the related component when only one of the linked components is rendered.
+N> Some Syncfusion&reg; Blazor components share styles with another component. For example, the [Toggle Switch Button](https://www.syncfusion.com/blazor-components/blazor-toggle-switch-button) component uses the same `button.min.css` stylesheet as the [Button](https://www.syncfusion.com/blazor-components/blazor-button) component. Refer to the stylesheet shared by the related component when only one of the linked components is rendered.
 
 ## Where to reference the styles
 
@@ -440,8 +346,8 @@ The following example shows a Blazor Web App that renders the [Blazor Diagram](h
 
     <!-- Syncfusion Blazor Themes: Base (mandatory) + components used by this app -->
     <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/base/base.min.css" />
-    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/buttons/buttons.min.css" />
-    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grids/grids.min.css" />
+    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/button/button.min.css" />
+    <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/grid/grid.min.css" />
     <link rel="stylesheet" href="_content/Syncfusion.Blazor.Themes/fluent2-dark/diagram/diagram.min.css" />
 </head>
 <body>
